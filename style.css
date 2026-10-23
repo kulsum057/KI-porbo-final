@@ -1,0 +1,323 @@
+/* ==========================================================================
+   কি পরবো (Ki Porbo) — Personal Digital Wardrobe & Outfit Planner
+   Custom Design System & Utilities
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. CSS Custom Properties / Color Tokens (§4.2)
+   -------------------------------------------------------------------------- */
+:root {
+  --bg: #F7F3EC;
+  --bg-mist: #DCE8E6;
+  --surface: #FFFFFF;
+  --ink: #14201F;
+  --ink-soft: #5C6B69;
+  --sage: #A9BFB2;
+  --border: #E7E1D6;
+  --brand-red: #FF1E0A;
+  --brand-yellow: #FFC20E;
+
+  /* Elevated Shadows */
+  --shadow-card: 0 20px 50px -20px rgba(20, 32, 31, 0.15);
+  --shadow-card-hover: 0 25px 60px -15px rgba(20, 32, 31, 0.22);
+  --shadow-modal: 0 35px 80px -25px rgba(20, 32, 31, 0.35);
+  --shadow-float: 0 12px 30px -10px rgba(20, 32, 31, 0.18);
+}
+
+/* --------------------------------------------------------------------------
+   2. Typography & Base Elements
+   -------------------------------------------------------------------------- */
+body {
+  font-family: 'Plus Jakarta Sans', 'Hind Siliguri', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background-color: var(--bg);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+.font-editorial {
+  font-family: 'Fraunces', 'Noto Serif Bengali', serif;
+}
+
+.font-bangla {
+  font-family: 'Hind Siliguri', 'Noto Sans Bengali', sans-serif;
+}
+
+.headline-tight {
+  letter-spacing: -0.035em;
+}
+
+/* --------------------------------------------------------------------------
+   3. Custom Surfaces & Glassmorphism (§4.1 & §4.4)
+   -------------------------------------------------------------------------- */
+.bg-mist-gradient {
+  background: linear-gradient(135deg, #DCE8E6 0%, #EBF1EF 50%, #F7F3EC 100%);
+}
+
+.bg-mist-subtle {
+  background: linear-gradient(180deg, rgba(220, 232, 230, 0.45) 0%, rgba(247, 243, 236, 0.6) 100%);
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.78);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.85);
+}
+
+.glass-badge {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.75);
+}
+
+.card-elevated {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-card);
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.card-elevated:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-card-hover);
+}
+
+/* Interactive elements without hover lift */
+.card-static {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-card);
+}
+
+/* --------------------------------------------------------------------------
+   4. Buttons & Interactive Controls (§4.4)
+   -------------------------------------------------------------------------- */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.625rem;
+  background-color: var(--ink);
+  color: #FFFFFF;
+  font-weight: 600;
+  border-radius: 9999px;
+  padding: 0.75rem 1.35rem;
+  transition: transform 0.18s ease, background-color 0.18s ease, box-shadow 0.18s ease;
+  cursor: pointer;
+  border: none;
+  text-decoration: none;
+}
+
+.btn-primary:hover {
+  transform: scale(1.02);
+  background-color: #0c1514;
+}
+
+.btn-primary:active {
+  transform: scale(0.98);
+}
+
+.btn-primary .btn-circle-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 9999px;
+  background-color: rgba(255, 255, 255, 0.18);
+  color: #FFFFFF;
+  transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.btn-primary:hover .btn-circle-icon {
+  background-color: var(--brand-yellow);
+  color: var(--ink);
+  transform: rotate(45deg);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background-color: transparent;
+  color: var(--ink);
+  border: 1px solid var(--border);
+  font-weight: 600;
+  border-radius: 9999px;
+  padding: 0.7rem 1.25rem;
+  transition: all 0.18s ease;
+  cursor: pointer;
+}
+
+.btn-secondary:hover {
+  background-color: rgba(20, 32, 31, 0.04);
+  border-color: var(--sage);
+}
+
+.btn-secondary:active {
+  transform: scale(0.98);
+}
+
+/* Filter Chips (§4.4) */
+.filter-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1.1rem;
+  border-radius: 9999px;
+  background-color: #FFFFFF;
+  border: 1px solid var(--border);
+  color: var(--ink-soft);
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all 0.18s ease;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.filter-chip:hover {
+  border-color: var(--sage);
+  color: var(--ink);
+  background-color: #FAFAFA;
+}
+
+.filter-chip.active {
+  background-color: var(--ink);
+  color: #FFFFFF;
+  border-color: var(--ink);
+  font-weight: 600;
+}
+
+.filter-chip.active .chip-dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 9999px;
+  background-color: var(--brand-red);
+}
+
+.filter-chip .chip-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.1rem 0.45rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  background-color: rgba(20, 32, 31, 0.06);
+  color: var(--ink-soft);
+}
+
+.filter-chip.active .chip-count {
+  background-color: rgba(255, 255, 255, 0.22);
+  color: #FFFFFF;
+}
+
+/* --------------------------------------------------------------------------
+   5. Custom Scrollbars & Scrolling Carousels
+   -------------------------------------------------------------------------- */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  height: 6px;
+  width: 6px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(20, 32, 31, 0.04);
+  border-radius: 9999px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: var(--sage);
+  border-radius: 9999px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: var(--ink-soft);
+}
+
+/* --------------------------------------------------------------------------
+   6. Flat-Lay Stage Styling (§5.3)
+   -------------------------------------------------------------------------- */
+.flat-lay-stage {
+  min-height: 480px;
+  position: relative;
+  background: radial-gradient(circle at 50% 35%, #FFFFFF 0%, #DCE8E6 100%);
+  border: 1px solid var(--border);
+  border-radius: 1.75rem;
+}
+
+.flat-lay-slot {
+  position: relative;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  border-radius: 1.25rem;
+}
+
+.flat-lay-slot.empty {
+  border: 2px dashed rgba(92, 107, 105, 0.35);
+  background-color: rgba(255, 255, 255, 0.5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.flat-lay-slot.empty:hover {
+  border-color: var(--ink);
+  background-color: rgba(255, 255, 255, 0.85);
+  transform: translateY(-2px);
+}
+
+/* --------------------------------------------------------------------------
+   7. Modals & Backdrop Blur (§5.5)
+   -------------------------------------------------------------------------- */
+.modal-backdrop {
+  background: rgba(20, 32, 31, 0.48);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: opacity 0.25s ease;
+}
+
+.modal-sheet {
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* --------------------------------------------------------------------------
+   8. Animation & Motion (§4.4)
+   -------------------------------------------------------------------------- */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes popIn {
+  0% { transform: scale(0.94); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-pop-in {
+  animation: popIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Respect user motion preference (§4.4) */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
